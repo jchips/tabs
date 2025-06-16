@@ -1,6 +1,7 @@
 /* global chrome */
 
 import { useState, useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
   const saveGroup = async () => {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     const newGroup = {
+      id: uuid(),
       name,
       tabs: tabs.map((tab) => ({
         // create object for each tab in group
@@ -76,11 +78,20 @@ function App() {
       <button onClick={saveGroup}>Save group</button>
 
       <h3>Saved groups</h3>
-      {groups.map((group, i) => (
-        <div key={i}>
+      {groups.map((group) => (
+        <div key={group.id}>
           <strong>{group.name}</strong>
           <button onClick={() => openGroup(group)}>Open</button>
-          <button onClick={() => deleteGroup(i)}>Delete</button>
+          <button
+            onClick={() =>
+              chrome.tabs.create({
+                url: `group.html?groupId=${group.id}`,
+              })
+            }
+          >
+            View
+          </button>
+          <button onClick={() => deleteGroup(group.id)}>Delete</button>
         </div>
       ))}
 
