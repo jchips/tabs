@@ -3,17 +3,17 @@
 
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import getTitleFromUrl from './getTitleFromUrl';
 
 const GroupView = () => {
   const [group, setGroup] = useState(null);
   // const [groupId, setGroupId] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  /* Fetches groupId and finds the selected group */
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    console.log('params:', params); // dl
     const id = params.get('groupId');
-    console.log('id:', id); // dl
 
     chrome.storage.local.get('tabGroups', (result) => {
       const groups = result.tabGroups || [];
@@ -28,6 +28,10 @@ const GroupView = () => {
     setLoading(false);
   }, []);
 
+  /**
+   * Updates the group in the Chrome storage and the component state.
+   * @param {Object} updatedGroup - The group that has been modified.
+   */
   const updateGroup = (updatedGroup) => {
     chrome.storage.local.get('tabGroups', (result) => {
       const groups = result.tabGroups || [];
@@ -41,12 +45,22 @@ const GroupView = () => {
     });
   };
 
+  /**
+   *
+   * @param {number} i - The tab index
+   * @param {string} inputField - "url"
+   * @param {string} newValue - A new value for the tab url
+   */
   const handleUpdateTab = (i, inputField, newValue) => {
     const groupCopy = { ...group };
     groupCopy.tabs[i][inputField] = newValue;
     updateGroup(groupCopy);
   };
 
+  /**
+   * Deletes given tab from tab group
+   * @param {number} index - The tab index
+   */
   const handleDeleteTab = (index) => {
     const groupAfterDeleteTab = {
       ...group,
@@ -55,14 +69,20 @@ const GroupView = () => {
     updateGroup(groupAfterDeleteTab);
   };
 
-  const handleAddTab = () => {
+  /* Adds new tab to group */
+  const handleAddTab = async () => {
     const url = prompt('Enter tab url');
     if (url) {
-      const groupWithAddedUrl = {
-        ...group,
-        tabs: [...group.tabs, { url, title: url }],
-      };
-      updateGroup(groupWithAddedUrl);
+      try {
+        const title = await getTitleFromUrl(url);
+        const groupWithAddedUrl = {
+          ...group,
+          tabs: [...group.tabs, { url, title }],
+        };
+        updateGroup(groupWithAddedUrl);
+      } catch (err) {
+        console.error('failed to fetch tab title:', err);
+      }
     }
   };
 
@@ -75,10 +95,6 @@ const GroupView = () => {
         {group.tabs.map((tab, i) => (
           <div key={i}>
             <p>{tab.title}</p>
-            <input
-              value={tab.url}
-              onChange={(e) => handleUpdateTab(i, 'title', e.target.value)}
-            />
             <input
               value={tab.url}
               onChange={(e) => handleUpdateTab(i, 'url', e.target.value)}
