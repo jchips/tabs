@@ -7,7 +7,6 @@ import getTitleFromUrl from './getTitleFromUrl';
 
 const GroupView = () => {
   const [group, setGroup] = useState(null);
-  // const [groupId, setGroupId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   /* Fetches groupId and finds the selected group */
@@ -20,7 +19,6 @@ const GroupView = () => {
       const selectedGroup = groups.find((group) => group.id === id);
       if (selectedGroup) {
         setGroup(selectedGroup);
-        // setGroupId(id);
       } else {
         console.error('Group not found');
       }

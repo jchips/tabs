@@ -15,19 +15,6 @@ function App() {
     });
   }, []);
 
-  // const saveCurrentTabs = async () => {
-  //   const tabs = await chrome.tabs.query({ currentWindow: true });
-  //   const urls = tabs.map((tab) => tab.url); // creates array of tab urls
-  //   chrome.tabs.group({urls}, (groupId) => {
-  //     chrome.tabGroups.update(groupId, {
-  //       name: 'New group'
-  //     })
-  //   })
-  //   // chrome.storage.local.set({ savedTabs: urls }, () => {
-  //   //   setStatus('Current tabs saved');
-  //   // });
-  // };
-
   const saveGroup = async () => {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     const newGroup = {
