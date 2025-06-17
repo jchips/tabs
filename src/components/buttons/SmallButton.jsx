@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 const SmallButton = ({ children, className = '', ...props }) => {
   const baseStyle =
-    'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300 font-medium focus:outline-none focus:ring-4 font-medium rounded-md text-xs px-3 py-2 m-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700';
+    'text-indigo-700 hover:text-white border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-md text-xs text-center px-3 py-2 m-2 dark:border-indigo-400 dark:text-indigo-400 dark:hover:text-white dark:hover:bg-indigo-500 dark:focus:ring-indigo-900';
   return (
     <button
       type='button'

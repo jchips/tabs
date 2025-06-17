@@ -82,9 +82,9 @@ function App() {
         <button
           onClick={saveGroup}
           type='button'
-          className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-3 my-2 mx-1 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+          className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-2.5 my-2 mx-1 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
         >
-          Save group
+          Save
         </button>
       </div>
 
@@ -100,7 +100,7 @@ function App() {
             </span>
             <SmallButton
               onClick={() => openGroup(group)}
-              className='bg-indigo-800 hover:bg-indigo-900 focus:ring-indigo-300 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo dark:border-indigo-700'
+              className='text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-indigo-300 font-medium focus:outline-none focus:ring-4 rounded-md text-xs px-3 py-2 m-2 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo-700 dark:border-indigo-700'
             >
               Open
             </SmallButton>
