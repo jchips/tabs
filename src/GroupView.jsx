@@ -3,7 +3,18 @@
 
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+} from 'flowbite-react';
 import getTitleFromUrl from './getTitleFromUrl';
+import Button from './components/buttons/Button';
+import TableButton from './components/buttons/TableButton';
+import './index.css';
 
 const GroupView = () => {
   const [group, setGroup] = useState(null);
@@ -88,20 +99,47 @@ const GroupView = () => {
 
   return (
     !loading && (
-      <div>
-        <h2>{group.name}</h2>
-        {group.tabs.map((tab, i) => (
-          <div key={i}>
-            <p>{tab.title}</p>
-            <input
-              value={tab.url}
-              onChange={(e) => handleUpdateTab(i, 'url', e.target.value)}
-            />
-            <button onClick={() => handleDeleteTab(i)}>Delete</button>
-          </div>
-        ))}
-        <button onClick={handleAddTab}>Add new tab</button>
-      </div>
+      <main className='h-screen w-screen overflow-y-auto text-center'>
+        <h1 className='m-5 font-semibold text-center'>{group.name}</h1>
+        <Button onClick={handleAddTab}>Add new tab</Button>
+        <div className='w-full p-10 overflow-x-auto flex justify-center items-center'>
+          <Table striped className='w-full table-fixed'>
+            <TableHead>
+              <TableHeadCell className='w-1/4'>Title</TableHeadCell>
+              <TableHeadCell className='w-2/4'>URL</TableHeadCell>
+              <TableHeadCell className='w-1/4'>Delete from group</TableHeadCell>
+            </TableHead>
+            <TableBody>
+              {group.tabs.map((tab, i) => (
+                <TableRow
+                  key={i}
+                  className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800'
+                >
+                  <TableCell className='font-medium text-gray-900 dark:text-white'>
+                    {tab.title}
+                  </TableCell>
+                  <TableCell className='text-gray-900 dark:text-white'>
+                    <input
+                      value={tab.url}
+                      onChange={(e) =>
+                        handleUpdateTab(i, 'url', e.target.value)
+                      }
+                      type='text'
+                      id='default-input'
+                      className='py-4 px-2.5 w-full m-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TableButton onClick={() => handleDeleteTab(i)}>
+                      Delete
+                    </TableButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </main>
     )
   );
 };
