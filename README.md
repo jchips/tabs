@@ -13,6 +13,7 @@ A simple tab manager extension for Chrome browser.
 
 - **2025.06.15 (0.0.1)** - Ability to add and remove tab groups
 - **2025.06.16 (1.0.0)** - Ability to view and edit tab groups, added styling
+- **2025.06.17 (1.0.1)** - Ability to edit tab group name
 
 ## Credits / Resources
 
@@ -20,4 +21,5 @@ A simple tab manager extension for Chrome browser.
 - [UUID](http://npmjs.com/package/uuid)
 - [TailwindCSS v4](https://tailwindcss.com/)
 - [Flowbite](https://flowbite.com/)
-- [Icon from icons8.com](https://icons8.com/icons/set/tabs--os-windows)
+- [Tab icon from icons8.com](https://icons8.com/icons/set/tabs--os-windows)
+- [Pen icon from Heroicons](https://heroicons.com/micro)
