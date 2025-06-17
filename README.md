@@ -1,18 +1,18 @@
 # Tabs
 
-A tab manager extension for Chrome browser.
+A simple tab manager extension for Chrome browser.
 
 ## Author: Jelani R
 
 ## Architecture
 
-- Built with React + Vite and TailwindCSS + Flowbite
-- Languages used: JavaScript, CSS
+- Built with React + Vite, TailwindCSS + Flowbite
+- Languages used: JavaScript
 
 ## Changelog
 
 - **2025.06.15 (0.0.1)** - Ability to add and remove tab groups
-- **2025.06.16 (0.0.2)** - Ability to view and edit tab groups, added styling
+- **2025.06.16 (1.0.0)** - Ability to view and edit tab groups, added styling
 
 ## Credits / Resources
 
