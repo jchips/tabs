@@ -16,13 +16,17 @@ function App() {
     });
   }, []);
 
+  /**
+   * Saves a new tab group to Chrome storage.
+   * Every tab in current window is saved to group.
+   * Creates an object for each tab in group.
+   */
   const saveGroup = async () => {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     const newGroup = {
       id: uuid(),
       name,
       tabs: tabs.map((tab) => ({
-        // create object for each tab in group
         url: tab.url,
         title: tab.title,
       })),
@@ -35,6 +39,10 @@ function App() {
     });
   };
 
+  /**
+   * Deletes tab group
+   * @param {string} i - group uuid
+   */
   const deleteGroup = (i) => {
     const groupsCopy = [...groups];
     groupsCopy.splice(i, 1);
@@ -44,6 +52,10 @@ function App() {
     });
   };
 
+  /**
+   * Opens a tab group in a new window
+   * @param {Object} group - Key and values of tab group
+   */
   const openGroup = (group) => {
     if (group.tabs && group.tabs.length > 0) {
       group.tabs.forEach((tab) =>
