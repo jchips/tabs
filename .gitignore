@@ -1,5 +1,17 @@
 # Created by https://www.gitignore.io/api/node,macos,linux,windows,webstorm,visualstudiocode
 
+.editorconfig
+.vscode
+/dist
+dist-ssr
+*.local
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
 ### Linux ###
 *~
 
@@ -230,15 +242,3 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/node,macos,linux,windows,webstorm,visualstudiocode
-
-.editorconfig
-.vscode
-dist/
-dist-ssr
-*.local
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
