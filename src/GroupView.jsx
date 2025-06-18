@@ -20,7 +20,7 @@ const GroupView = () => {
   const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  /* Fetches groupId and finds the selected group */
+  /* Fetches groupId from url and finds the selected group */
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('groupId');
@@ -54,7 +54,7 @@ const GroupView = () => {
   };
 
   /**
-   *
+   * Updates the url of a given tab
    * @param {number} i - The tab index
    * @param {string} inputField - "url"
    * @param {string} newValue - A new value for the tab url
@@ -94,6 +94,7 @@ const GroupView = () => {
     }
   };
 
+  /* Changes tab group name to user's choice */
   const editGroupName = () => {
     const groupName = prompt('Enter name for tab group');
     if (groupName) {
@@ -127,9 +128,11 @@ const GroupView = () => {
         <div className='w-full p-10 overflow-x-auto flex justify-center items-center'>
           <Table striped className='w-full table-fixed'>
             <TableHead>
-              <TableHeadCell className='w-1/4'>Title</TableHeadCell>
+              <TableHeadCell className='w-1/4'>Tab title</TableHeadCell>
               <TableHeadCell className='w-2/4'>URL</TableHeadCell>
-              <TableHeadCell className='w-1/4'>Remove from group</TableHeadCell>
+              <TableHeadCell className='w-1/4'>
+                Remove tab from group
+              </TableHeadCell>
             </TableHead>
             <TableBody>
               {group.tabs.map((tab, i) => (
