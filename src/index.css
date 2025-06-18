@@ -41,6 +41,10 @@ h1 {
   font-size: 3.2em;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

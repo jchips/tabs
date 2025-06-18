@@ -11,9 +11,10 @@ A simple tab manager extension for Chrome browser.
 
 ## Changelog
 
-- **2025.06.15 (0.0.1)** - Ability to add and remove tab groups
+- **2025.06.18 (1.0.2)** - Fixed delete group bug where wrong group is sometimes deleted, new group adds to top instead of bottom
+- **2025.06.17 (1.0.1)** - Ability to edit tab group names
 - **2025.06.16 (1.0.0)** - Ability to view and edit tab groups, added styling
-- **2025.06.17 (1.0.1)** - Ability to edit tab group name
+- **2025.06.15 (0.0.1)** - Ability to add and remove tab groups
 
 ## Credits / Resources
 

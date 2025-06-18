@@ -2,7 +2,8 @@
 
 /**
  * Fetches the title of the tab from the given url.
- * While fetching the title, the tab will briefly open in the browser and then close.
+ * While fetching the title, the tab will briefly open in the
+ * browser background and then close.
  * @param {string} url - The url of the new tab that is being added.
  * @returns {promise} - A promise with the fetched title of the tab.
  */

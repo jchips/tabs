@@ -31,7 +31,7 @@ function App() {
         title: tab.title,
       })),
     };
-    const updatedGroups = [...groups, newGroup];
+    const updatedGroups = [newGroup, ...groups];
     chrome.storage.local.set({ tabGroups: updatedGroups }, () => {
       setGroups(updatedGroups);
       setName('');
@@ -41,20 +41,20 @@ function App() {
 
   /**
    * Deletes tab group
-   * @param {string} i - group uuid
+   * @param {string} id - group uuid
    */
-  const deleteGroup = (i) => {
+  const deleteGroup = (id) => {
     const groupsCopy = [...groups];
-    groupsCopy.splice(i, 1);
-    chrome.storage.local.set({ tabGroups: groupsCopy }, () => {
-      setGroups(groupsCopy);
+    const updatedGroups = groupsCopy.filter((group) => group.id !== id);
+    chrome.storage.local.set({ tabGroups: updatedGroups }, () => {
+      setGroups(updatedGroups);
       setStatus('Deleted group');
     });
   };
 
   /**
    * Opens a tab group in a new window
-   * @param {Object} group - Key and values of tab group
+   * @param {Object} group - Keys and values of tab group
    */
   const openGroup = (group) => {
     if (group.tabs && group.tabs.length > 0) {
@@ -68,8 +68,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1 className='mb-5 font-semibold'>Tabs</h1>
+    <div className='overflow-y-auto'>
+      <h2 className='mb-5 font-semibold'>Tabs</h2>
       <div className='flex justify-center items-center space-x-2'>
         <input
           placeholder='Group Name'
