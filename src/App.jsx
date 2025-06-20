@@ -98,12 +98,12 @@ function App() {
             <span className='text-xs font-medium text-gray-700 dark:text-gray-300'>
               {group.name}
             </span>
-            <SmallButton
+            <button
               onClick={() => openGroup(group)}
               className='text-white bg-indigo-800 hover:bg-indigo-900 focus:ring-indigo-300 font-medium focus:outline-none focus:ring-4 rounded-md text-xs px-3 py-2 m-2 dark:bg-indigo-800 dark:hover:bg-indigo-700 dark:focus:ring-indigo-700 dark:border-indigo-700'
             >
               Open
-            </SmallButton>
+            </button>
             <SmallButton
               onClick={() =>
                 chrome.tabs.create({

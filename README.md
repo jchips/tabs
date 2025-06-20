@@ -6,7 +6,7 @@ A simple tab manager extension for Chrome browser.
 
 ## Architecture
 
-- Built with React + Vite, TailwindCSS + Flowbite
+- Built with React + Vite, Tailwindcss + Flowbite
 - Languages used: JavaScript
 
 ## Changelog
@@ -20,7 +20,7 @@ A simple tab manager extension for Chrome browser.
 
 - [developer.chrome.com](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world)
 - [UUID](http://npmjs.com/package/uuid)
-- [TailwindCSS v4](https://tailwindcss.com/)
+- [Tailwindcss v4](https://tailwindcss.com/)
 - [Flowbite](https://flowbite.com/)
 - [Tab icon from icons8.com](https://icons8.com/icons/set/tabs--os-windows)
 - [Pen icon from Heroicons](https://heroicons.com/micro)
