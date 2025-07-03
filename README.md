@@ -9,6 +9,15 @@ A simple tab manager extension for Chrome browser.
 - Built with React + Vite, Tailwindcss + Flowbite
 - Languages used: JavaScript
 
+## Setup
+
+Follow steps in this order:
+
+1. Run `npm install`
+2. Run `npx flowbite-react@latest init`
+3. Run `npm run build`
+4. Unpack the /dist folder in Chrome extensions
+
 ## Changelog
 
 - **2025.06.18 (1.0.2)** - Fixed delete group bug where wrong group is sometimes deleted, new group adds to top instead of bottom
