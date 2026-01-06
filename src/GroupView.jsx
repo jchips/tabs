@@ -1,5 +1,4 @@
 /* eslint-disable react-refresh/only-export-components */
-/* global chrome */
 
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -14,6 +13,7 @@ import {
 import getTitleFromUrl from './getTitleFromUrl';
 import Button from './components/buttons/Button';
 import TableButton from './components/buttons/TableButton';
+import ext from './ext';
 import './index.css';
 
 const GroupView = () => {
@@ -25,7 +25,7 @@ const GroupView = () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('groupId');
 
-    chrome.storage.local.get('tabGroups', (result) => {
+    ext.storage.local.get('tabGroups', (result) => {
       const groups = result.tabGroups || [];
       const selectedGroup = groups.find((group) => group.id === id);
       if (selectedGroup) {
@@ -33,8 +33,8 @@ const GroupView = () => {
       } else {
         console.error('Group not found');
       }
+      setLoading(false);
     });
-    setLoading(false);
   }, []);
 
   /**
@@ -42,12 +42,12 @@ const GroupView = () => {
    * @param {Object} updatedGroup - The group that has been modified.
    */
   const updateGroup = (updatedGroup) => {
-    chrome.storage.local.get('tabGroups', (result) => {
+    ext.storage.local.get('tabGroups', (result) => {
       const groups = result.tabGroups || [];
       const updatedGroups = groups.map((group) =>
         group.id === updatedGroup.id ? updatedGroup : group
       );
-      chrome.storage.local.set({ tabGroups: updatedGroups }, () => {
+      ext.storage.local.set({ tabGroups: updatedGroups }, () => {
         setGroup(updatedGroup);
       });
     });

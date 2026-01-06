@@ -1,8 +1,7 @@
-/* global chrome */
-
 import { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import SmallButton from './components/buttons/SmallButton';
+import ext from './ext';
 import './App.css';
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    chrome.storage.local.get('tabGroups', (result) => {
+    ext.storage.local.get('tabGroups', (result) => {
       setGroups(result.tabGroups || []);
     });
   }, []);
@@ -22,7 +21,7 @@ function App() {
    * Creates an object for each tab in group.
    */
   const saveGroup = async () => {
-    const tabs = await chrome.tabs.query({ currentWindow: true });
+    const tabs = await ext.tabs.query({ currentWindow: true });
     const newGroup = {
       id: uuid(),
       name,
@@ -32,7 +31,7 @@ function App() {
       })),
     };
     const updatedGroups = [newGroup, ...groups];
-    chrome.storage.local.set({ tabGroups: updatedGroups }, () => {
+    ext.storage.local.set({ tabGroups: updatedGroups }, () => {
       setGroups(updatedGroups);
       setName('');
       setStatus('Group saved');
@@ -46,7 +45,7 @@ function App() {
   const deleteGroup = (id) => {
     const groupsCopy = [...groups];
     const updatedGroups = groupsCopy.filter((group) => group.id !== id);
-    chrome.storage.local.set({ tabGroups: updatedGroups }, () => {
+    ext.storage.local.set({ tabGroups: updatedGroups }, () => {
       setGroups(updatedGroups);
       setStatus('Deleted group');
     });
@@ -59,7 +58,7 @@ function App() {
   const openGroup = (group) => {
     if (group.tabs && group.tabs.length > 0) {
       group.tabs.forEach((tab) =>
-        chrome.tabs.create({
+        ext.tabs.create({
           url: tab.url,
         })
       );
@@ -106,7 +105,7 @@ function App() {
             </button>
             <SmallButton
               onClick={() =>
-                chrome.tabs.create({
+                ext.tabs.create({
                   url: `group.html?groupId=${group.id}`,
                 })
               }
