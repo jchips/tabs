@@ -14,9 +14,10 @@ A simple tab manager extension for Chrome and Firefox browsers.
 Follow steps in this order:
 
 1. Run `npm install`
-2. Run `npx flowbite-react@latest init`
-3. Run `npm run build`
-4. Unpack the /dist folder in [Chrome extensions](chrome://extensions/) or in [Firefox debugging](about:debugging#/runtime/this-firefox)
+2. Run `npm install flowbite-react@latest`
+3. Run `npx flowbite-react@latest init`
+4. Run `npm run build`
+5. Unpack the /dist folder in [Chrome extensions](chrome://extensions/) or in [Firefox debugging](about:debugging#/runtime/this-firefox)
 
 ## Changelog
 
